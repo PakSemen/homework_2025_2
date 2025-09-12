@@ -57,4 +57,18 @@ QUnit.module("Тестируем функцию compressObject", function() {
             anotherDefined: 42
         }, "Свойства с undefined должны быть удалены");
     });
+
+    QUnit.test("Выбрасывает ошибку при передаче строки", function(assert) {
+        assert.throws(() => compressObject("Плачу на техно, я плачу на технопарке"),
+            new Error("ожидался объект"),
+            "Должна выбрасываться ошибка при передаче строки"
+        );
+    });
+
+    QUnit.test("Выбрасывает ошибку при передаче числа", function(assert) {
+        assert.throws(() => compressObject(42), 
+            new Error("ожидался объект"),
+            "Должна выбрасываться ошибка при передаче числа"
+        );
+    });
 });

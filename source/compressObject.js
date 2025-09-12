@@ -18,11 +18,14 @@
  */
 
 const compressObject = function(obj){
-    const o = obj;
-    for (let key in o) {
-        if (o[key] == null || o[key] == undefined || o[key] == "") {
-            delete o[key];
+    if (typeof obj === "object") {
+    
+        for (let key in obj) {
+            if (!obj[key]) {
+                delete obj[key];
+            }
         }
-    }
-    return o;
+        return obj;
+    } 
+    throw new Error("ожидался объект");
 }
