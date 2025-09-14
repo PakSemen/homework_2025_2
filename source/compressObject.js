@@ -18,10 +18,9 @@
  */
 
 const compressObject = function(obj){
-    if (typeof obj === "object") {
-    
+    if (obj !== null && obj.toString() === "[object Object]") {
         for (let key in obj) {
-            if (!obj[key]) {
+            if (!obj[key] || !obj[key].toString()) {
                 delete obj[key];
             }
         }

@@ -18,6 +18,8 @@ QUnit.module("Тестируем функцию compressObject", function() {
             a: null,
             b: undefined,
             c: "",
+            d: [],
+            e: new String("")
         });
 
         assert.deepEqual(result, {}, "Объект без ненулевых значений должен вернуть пустой объект.");
@@ -65,10 +67,31 @@ QUnit.module("Тестируем функцию compressObject", function() {
         );
     });
 
+    QUnit.test("Выбрасывает ошибку при передаче объекта строки", function(assert) {
+        assert.throws(() => compressObject(new String("Плачу на техно, я плачу на технопарке")),
+            new Error("ожидался объект"),
+            "Должна выбрасываться ошибка при передаче объекта строки"
+        );
+    });
+
     QUnit.test("Выбрасывает ошибку при передаче числа", function(assert) {
         assert.throws(() => compressObject(42), 
             new Error("ожидался объект"),
             "Должна выбрасываться ошибка при передаче числа"
+        );
+    });
+
+    QUnit.test("Выбрасывает ошибку при передаче массива чисел", function(assert) {
+        assert.throws(() => compressObject([42]), 
+            new Error("ожидался объект"),
+            "Должна выбрасываться ошибка при передаче массива чисел"
+        );
+    });
+
+    QUnit.test("Выбрасывает ошибку при передаче объекта Boolean", function(assert) {
+        assert.throws(() => compressObject(new Boolean(true)), 
+            new Error("ожидался объект"),
+            "Должна выбрасываться ошибка при передаче объекта Boolean"
         );
     });
 });
