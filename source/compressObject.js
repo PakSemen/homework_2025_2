@@ -18,13 +18,14 @@
  */
 
 const compressObject = function(obj){
-    if (obj !== null && obj.toString() === "[object Object]") {
-        for (let key in obj) {
-            if (!obj[key] || !obj[key].toString()) {
-                delete obj[key];
+    var copyObj = structuredClone(obj);
+    if (copyObj !== null && copyObj.toString() === "[object Object]") {
+        for (let key in copyObj) {
+            if (!copyObj[key] || !copyObj[key].toString()) {
+                delete copyObj[key];
             }
         }
-        return obj;
+        return copyObj;
     } 
     throw new Error("ожидался объект");
 }

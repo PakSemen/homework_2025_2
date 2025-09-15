@@ -94,4 +94,11 @@ QUnit.module("Тестируем функцию compressObject", function() {
             "Должна выбрасываться ошибка при передаче объекта Boolean"
         );
     });
+
+    QUnit.test("Проверяет создание и возврат нового объекта", function(assert) {
+        const someObj = { foo: 'bar', baz: null };
+        const result = compressObject(someObj);
+        assert.deepEqual(someObj, { foo: 'bar', baz: null },
+            "Переданный объект должен остаться неизменным");
+    });
 });
