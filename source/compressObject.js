@@ -17,7 +17,7 @@
  * @returns {Object}
  */
 const compressObject = function(obj){
-    var copyObj = structuredClone(obj);
+    let copyObj = structuredClone(obj);
     if (copyObj !== null && copyObj.toString() === "[object Object]") {
         for (let key in copyObj) {
             if (!copyObj[key] || !copyObj[key].toString()) {
